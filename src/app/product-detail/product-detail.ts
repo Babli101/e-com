@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
+import { ProductService } from '../services/product';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,21 +12,22 @@ import { Component } from '@angular/core';
 export class ProductDetail {
 
   productId!: number;
+  products: any;
 
-  product: any;
-
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
-
-    // Dummy data (later API se replace karna)
-    this.product = {
-      id: this.productId,
-      name: 'iPhone 14',
-      description: 'Latest Apple smartphone with powerful performance.',
-      brand: 'Apple',
-      price: 69999,
-      stock: 'In Stock',
-      image: 'https://via.placeholder.com/500'
-    };
   }
+
+  ngOnInit() {
+  this.route.paramMap.subscribe(params => {
+    this.productId = Number(params.get('id'));
+
+    this.productService.getProductById(this.productId).subscribe((data: any) => {
+      this.products = data;
+    });
+  });
+}
 }
