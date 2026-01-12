@@ -1,29 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule],   // 👈 THIS enables ngIf, ngClass, routerLink
   templateUrl: './product-detail.html',
 })
 export class ProductDetail {
 
   productId!: number;
-  product: any;   // 🔥 single product
+  product: any;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.productId = Number(params.get('id'));
 
-      this.productService.getProductById(this.productId).subscribe((data: any) => {
+      this.productService.getProductById(this.productId).subscribe(data => {
         this.product = data;
       });
     });
