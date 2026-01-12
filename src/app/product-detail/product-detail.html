@@ -2,20 +2,20 @@
 
   <div class="max-w-5xl w-full bg-white rounded-2xl shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
 
-    <!-- Left: Product Image -->
+    <!-- Left -->
     <div class="flex items-center justify-center">
       <img
-        [src]="product.image"
-        alt="Product image"
+        src="https://via.placeholder.com/400x300"
+        alt="Product"
         class="w-full max-w-sm h-80 object-cover rounded-xl shadow"
       />
     </div>
 
-    <!-- Right: Product Details -->
+    <!-- Right -->
     <div class="space-y-4">
 
       <h1 class="text-3xl font-bold text-gray-800">
-        {{ product.productName}}
+        {{ product.name }}
       </h1>
 
       <p class="text-gray-500 text-sm">
@@ -24,36 +24,39 @@
 
       <div class="flex items-center gap-4">
         <span class="text-sm text-gray-500">Brand:</span>
-        <span class="font-medium text-gray-800">{{ product.brand }}</span>
+        <span class="font-medium text-gray-800">
+          {{ product.brand }}
+        </span>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div>
         <span
           class="px-3 py-1 rounded-full text-sm font-medium"
-          [ngClass]="product.stock === 'In Stock'
+          [ngClass]="product.available
             ? 'bg-green-100 text-green-600'
-            : 'bg-red-100 text-red-600'"
-        >
-          {{ product.stock ? 'In Stock' : 'Out of Stock'  }}
+            : 'bg-red-100 text-red-600'">
+          {{ product.available ? 'In Stock' : 'Out of Stock' }}
         </span>
       </div>
 
       <div class="text-3xl font-bold text-pink-500 mt-4">
-        ₹ {{ product.productPrice }}
+        ₹ {{ product.price }}
+      </div>
+
+      <div class="text-gray-600">
+        Quantity: {{ product.quantity }}
       </div>
 
       <!-- Actions -->
       <div class="flex gap-4 mt-6">
         <a
-        [routerLink]="['/updateProduct', product.id]"
-          class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg transition"
-        >
+          [routerLink]="['/updateProduct', product.id]"
+          class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg transition">
           Edit Product
-      </a>
+        </a>
 
         <button
-          class="border border-pink-500 text-pink-500 hover:bg-pink-50 px-6 py-3 rounded-lg transition"
-        >
+          class="border border-pink-500 text-pink-500 hover:bg-pink-50 px-6 py-3 rounded-lg transition">
           Delete
         </button>
       </div>
