@@ -11,7 +11,7 @@ import { ProductService } from '../services/product';
 })
 export class ProductDetail {
 
-  productId!: number;
+  productsId!: number;
   product: any;
 
   constructor(
@@ -21,9 +21,9 @@ export class ProductDetail {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.productId = Number(params.get('id'));
+      this.productsId = Number(params.get('id'));
 
-      this.productService.getProductById(this.productId).subscribe(data => {
+      this.productService.getProductById(this.productsId).subscribe(data => {
         this.product = data;
       });
     });
