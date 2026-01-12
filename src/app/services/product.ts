@@ -27,10 +27,9 @@ export class ProductService {
   }
 
   // 🔹 GET BY ID
+   // GET BY ID  🔥 THIS was wrong before
   getProductById(id: number) {
-    return this.http.get(
-      `${this.baseUrl}/create/products/${id}`
-    );
+    return this.http.get(`${this.baseUrl}/products/${id}`);
   }
 
   // 🔹 UPDATE  ✅ number
