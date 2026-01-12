@@ -20,20 +20,12 @@ export class ProductDetail {
   ) {}
 
   ngOnInit() {
-  this.route.paramMap.subscribe(params => {
-    this.productId = Number(params.get('id'));
-    console.log('Product ID from URL:', this.productId);
+    this.route.paramMap.subscribe(params => {
+      this.productId = Number(params.get('id'));
 
-    this.productService.getProductById(this.productId).subscribe({
-      next: (data) => {
-        console.log('API Response:', data);   // 🔥 check this
+      this.productService.getProductById(this.productId).subscribe(data => {
         this.product = data;
-      },
-      error: (err) => {
-        console.error('API Error:', err);
-      }
+      });
     });
-  });
-}
-
+  }
 }
