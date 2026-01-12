@@ -11,20 +11,26 @@ import { ProductService } from '../services/product';
 })
 export class ProductDetail {
 
-  productsId!: number;
+  productId!: number;
   product: any;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.productsId = Number(params.get('id'));
+      this.productId = Number(params.get('id'));
 
-      this.productService.getProductById(this.productsId).subscribe(data => {
-        this.product = data;
+      this.productService.getProductById(this.productId).subscribe({
+        next: (data) => {
+          this.product = data;
+        },
+        error: (err) => {
+          console.log('Redirected data:', err.error);
+          this.product = err.error;   // 🔥 take data from redirect response
+        }
       });
     });
   }
