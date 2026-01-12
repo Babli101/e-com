@@ -12,22 +12,20 @@ import { ProductService } from '../services/product';
 export class ProductDetail {
 
   productId!: number;
-  products: any;
+  product: any;   // 🔥 single product
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
-  ) {
-    this.productId = Number(this.route.snapshot.paramMap.get('id'));
-  }
+  ) { }
 
   ngOnInit() {
-  this.route.paramMap.subscribe(params => {
-    this.productId = Number(params.get('id'));
+    this.route.paramMap.subscribe(params => {
+      this.productId = Number(params.get('id'));
 
-    this.productService.getProductById(this.productId).subscribe((data: any) => {
-      this.products = data;
+      this.productService.getProductById(this.productId).subscribe((data: any) => {
+        this.product = data;
+      });
     });
-  });
-}
+  }
 }
