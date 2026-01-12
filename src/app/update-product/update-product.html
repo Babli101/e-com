@@ -1,0 +1,114 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+
+  <form
+    [formGroup]="editForm"
+    (ngSubmit)="updateProduct()"
+    class="w-full max-w-3xl bg-white p-8 mt-18 rounded-xl shadow space-y-6"
+  >
+
+    <h2 class="text-3xl font-bold text-center text-gray-800">
+      Edit Product
+    </h2>
+
+    <!-- 🔹 Product Image -->
+    <div class="space-y-2">
+      <label class="block text-sm font-medium text-gray-600">
+        Product Image
+      </label>
+
+      <!-- Preview -->
+      <div class="flex justify-center">
+        <img
+          [src]="imagePreview || existingImage"
+          alt="Product Image"
+          class="w-40 h-40 object-cover rounded-lg border"
+        />
+      </div>
+
+      <!-- File Input -->
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onImageChange($event)"
+        class="block w-full text-sm text-gray-600
+               file:mr-4 file:py-2 file:px-4
+               file:rounded-lg file:border-0
+               file:text-sm file:font-semibold
+               file:bg-pink-100 file:text-pink-600
+               hover:file:bg-pink-200"
+      />
+
+      <p class="text-xs text-gray-400 text-center">
+        Leave empty to keep existing image
+      </p>
+    </div>
+
+    <!-- Product Name -->
+    <input
+      formControlName="name"
+      placeholder="Product Name"
+      class="w-full border px-4 py-2 rounded-lg"
+    />
+
+    <!-- Description -->
+    <input
+      formControlName="description"
+      placeholder="Description"
+      class="w-full border px-4 py-2 rounded-lg"
+    />
+
+    <!-- Brand -->
+    <input
+      formControlName="brand"
+      placeholder="Brand"
+      class="w-full border px-4 py-2 rounded-lg"
+    />
+
+    <!-- Price -->
+    <input
+      type="number"
+      formControlName="price"
+      placeholder="Price"
+      class="w-full border px-4 py-2 rounded-lg"
+    />
+
+    <!-- Category -->
+    <select
+      formControlName="category"
+      class="w-full border px-4 py-2 rounded-lg"
+    >
+      <option value="">Select Category</option>
+      <option value="mobile">Mobile</option>
+      <option value="ipad">iPad</option>
+    </select>
+
+    <!-- Stock -->
+    <select
+      formControlName="stock"
+      class="w-full border px-4 py-2 rounded-lg"
+    >
+      <option value="">Select Stock</option>
+      <option value="In Stock">In Stock</option>
+      <option value="Out of Stock">Out of Stock</option>
+    </select>
+
+    <!-- Buttons -->
+    <div class="flex gap-4 justify-center pt-6">
+      <button
+        type="submit"
+        class="bg-pink-500 text-white px-6 py-3 rounded-lg"
+      >
+        Update
+      </button>
+
+      <a
+        routerLink="/getProduct"
+        class="border px-6 py-3 rounded-lg"
+      >
+        Cancel
+      </a>
+    </div>
+
+  </form>
+
+</div>

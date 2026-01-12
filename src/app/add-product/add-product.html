@@ -1,0 +1,91 @@
+<div class="min-h-screen bg-pink-100 flex items-center justify-center px-4">
+
+  <div class="w-full max-w-3xl bg-white rounded-xl shadow-lg p-8">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-center mt-10 mb-8 text-gray-800">
+      Add Product
+    </h1>
+
+    <form class="space-y-6" (ngSubmit)="addProduct()">
+
+  <!-- Product Name -->
+  <input
+    type="text"
+    placeholder="Enter product name"
+    [(ngModel)]="name"
+    name="name"
+    required
+    class="w-full border rounded-lg px-4 py-2"
+  />
+
+  <!-- Description -->
+  <input
+    type="text"
+    placeholder="Enter product description"
+    [(ngModel)]="description"
+    name="description"
+    class="w-full border rounded-lg px-4 py-2"
+  />
+
+  <!-- Brand -->
+  <input
+    type="text"
+    placeholder="Enter brand name"
+    [(ngModel)]="brand"
+    name="brand"
+    class="w-full border rounded-lg px-4 py-2"
+  />
+
+  <!-- Price -->
+  <input
+    type="number"
+    placeholder="Enter price"
+    [(ngModel)]="price"
+    name="price"
+    class="w-full border rounded-lg px-4 py-2"
+  />
+
+  <!-- Category -->
+  <select
+    [(ngModel)]="category"
+    name="category"
+    class="w-full border rounded-lg px-4 py-2"
+  >
+    <option value="">Select category</option>
+    <option value="mobile">Mobile</option>
+    <option value="ipad">iPad</option>
+  </select>
+
+  <!-- Stock -->
+  <select
+    [(ngModel)]="stock"
+    name="stock"
+    class="w-full border rounded-lg px-4 py-2"
+  >
+    <option value="">Select stock</option>
+    <option value="instock">In Stock</option>
+    <option value="outstock">Out of Stock</option>
+  </select>
+
+  <!-- Images -->
+  <input
+    type="file"
+    multiple
+    (change)="onImageSelect($event)"
+  />
+
+  <!-- Button -->
+  <button
+    type="submit"
+    class="bg-pink-500 text-white px-8 py-3 rounded-lg"
+  >
+    Add Product
+  </button>
+
+</form>
+
+
+  </div>
+
+</div>

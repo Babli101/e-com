@@ -1,0 +1,22 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 bg-red-300 p-6">
+
+  <a
+    *ngFor="let product of products"
+    [routerLink]="['/product', product.id]"
+    class="block bg-white rounded-xl shadow-md hover:shadow-lg transition mt-10"
+  >
+
+    <img
+      [src]="product.image"
+      class="w-full h-40 object-cover rounded-t-xl"
+    />
+
+    <div class="p-4 text-center">
+      <h4 class="text-xl font-semibold">{{ product.name }}</h4>
+      <p class="text-gray-500">{{ product.brand }}</p>
+      <p class="text-pink-500 font-bold mt-2">₹ {{ product.price }}</p>
+    </div>
+
+  </a>
+
+</div>
